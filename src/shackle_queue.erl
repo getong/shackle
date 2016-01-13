@@ -57,7 +57,8 @@ remove({ServerName, _} = RequestId) ->
         [] ->
             {error, not_found};
         [{_, ExtRequestId}] ->
-            [{_, Cast}] = ets:take(?ETS_TABLE_QUEUE, {ServerName, ExtRequestId}),
+            Key = {ServerName, ExtRequestId},
+            [{_, Cast}] = ets:take(?ETS_TABLE_QUEUE, Key),
             {ok, Cast}
     end.
 
