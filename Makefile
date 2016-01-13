@@ -27,6 +27,16 @@ eunit:
 	@echo "Running rebar3 eunit..."
 	@$(REBAR) do eunit -cv, cover -v
 
+profile:
+	@echo "Profiling..."
+	@$(REBAR) as test compile
+	@erl -noshell \
+	     -pa _build/test/lib/*/ebin \
+		 -eval 'shackle_profile:fprof()' \
+		 -eval 'init:stop()'
+	@erlgrind -p fprof.analysis
+	@qcachegrind fprof.cgrind
+
 test: dialyzer elvis eunit xref
 
 xref:
