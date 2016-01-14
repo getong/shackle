@@ -32,10 +32,10 @@ profile:
 	@$(REBAR) as test compile
 	@erl -noshell \
 	     -pa _build/test/lib/*/ebin \
-		 -eval 'shackle_profile:fprof()' \
+		 -eval 'shackle_profile:fprofx()' \
 		 -eval 'init:stop()'
-	@erlgrind -p fprof.analysis
-	@qcachegrind fprof.cgrind
+	@_build/test/lib/fprofx/erlgrindx -p fprofx.analysis
+	@qcachegrind fprofx.cgrind
 
 test: dialyzer elvis eunit xref
 
