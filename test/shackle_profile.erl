@@ -23,13 +23,15 @@ fprofx() ->
 
     arithmetic_tcp_client:start(),
     [spawn(fun () ->
-        [20 = arithmetic_tcp_client:add(10, 10) || _ <- lists:seq(1, ?N)]
+        [arithmetic_tcp_client:add(10, 10) || _ <- lists:seq(1, ?N)]
     end) || _ <- lists:seq(1, ?P)],
     sleep(),
 
     fprofx:trace(stop),
     fprofx:analyse([totals, {dest, ""}]),
     fprofx:stop(),
+    arithmetic_tcp_client:stop(),
+    application:stop(shackle),
 
     ok.
 
