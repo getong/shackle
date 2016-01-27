@@ -1,4 +1,8 @@
-[{<<"statsderl">>,
+[{<<"granderl">>,
+  {git,"https://github.com/lpgauth/granderl",
+       {ref,"739a518b1fa054c483f99c671b11b573f832ad47"}},
+  0},
+ {<<"statsderl">>,
   {git,"https://github.com/lpgauth/statsderl.git",
-       {ref,"45eb926a2da2f75be47d19b6c51ac08066d63e55"}},
+       {ref,"575593557709b38bb72e60053965b8194f507666"}},
   0}].
